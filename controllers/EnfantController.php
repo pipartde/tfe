@@ -7,10 +7,14 @@ class EnfantController extends AbstractController {
 
     // GET
     public function index (){
+
         $aidepeda = $this->isLogged();
 
         $ecoleDAO = new EcoleDAO();
         $ecoles = $ecoleDAO->fetchAllSortedBy('nom');
+
+        $semainierDAO = new SemainierDAO();
+        $semainier = $semainierDAO->fetchAll();
 
         $titulaireDAO = new TitulaireDAO();
         $titulaires = $titulaireDAO->fetchAllSortedBy('nom');
@@ -24,8 +28,12 @@ class EnfantController extends AbstractController {
     }
 
     public function show ($id){
-        $enfant = $this->dao->fetch($id);
 
+        $aidepeda = $this->isLogged();
+
+        $enfant = $this->dao->fetch($id);
+        $semainierDAO = new SemainierDAO();
+        $semainier = $semainierDAO->fetchAll();
 
         $lundi = explode(',',$enfant->planning_id->lundi);
         $mardi = explode(',',$enfant->planning_id->mardi);
@@ -42,12 +50,13 @@ class EnfantController extends AbstractController {
 
 
     public function create (){
-
+        $aidepeda = $this->isLogged();
         $ecoleDAO = new EcoleDAO();
         $ecoles = $ecoleDAO->fetchAllSortedBy('nom');
         $titulaireDAO = new TitulaireDAO();
         $titulaires = $titulaireDAO->fetchAllSortedBy('nom');
-
+        $semainierDAO = new SemainierDAO();
+        $semainier = $semainierDAO->fetchAll();
 
         include ('../views/include/header.php');
         include('../views/include/nav.php');
@@ -59,24 +68,27 @@ class EnfantController extends AbstractController {
 
     public function store($id, $data)
     {
-
         $is_stored_in_db = $this->dao->store($data);
         if($is_stored_in_db){
             $this->index();
         }
-
     }
 
 
     public function edit($id)
     {
         $aidepeda = $this->isLogged();
+
         $enfant = $this->dao->fetch($id);
 
         $ecoleDAO = new EcoleDAO();
         $ecoles = $ecoleDAO->fetchAllSortedBy('nom');
+
         $titulaireDAO = new TitulaireDAO();
         $titulaires = $titulaireDAO->fetchAllSortedBy('nom');
+
+        $semainierDAO = new SemainierDAO();
+        $semainier = $semainierDAO->fetchAll();
 
         include('../views/include/header.php');
         include('../views/include/nav.php');
@@ -98,12 +110,18 @@ class EnfantController extends AbstractController {
     }
 
 
-    public function delete($id, $data) {
+    public function delete($id, $data)
+    {
         $aidepeda = $this->isLogged();
+
         $this->dao->delete($data);
         $enfants = $this->dao->fetchAllSortedBy('nom');
+
         $ecoleDAO = new EcoleDAO();
         $ecoles = $ecoleDAO->fetchAllSortedBy('nom');
+
+        $semainierDAO = new SemainierDAO();
+        $semainier = $semainierDAO->fetchAll();
 
         $titulaireDAO = new TitulaireDAO();
         $titulaires = $titulaireDAO->fetchAllSortedBy('nom');

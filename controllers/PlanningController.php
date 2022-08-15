@@ -12,9 +12,14 @@ class PlanningController extends AbstractController {
     }
 
     public function show ($id){
+
         $aidepeda = $this->isLogged();
+
         $enfantDAO = new EnfantDAO();
         $enfant = $enfantDAO->fetch($id);
+
+        $semainierDAO = new SemainierDAO();
+        $semainier = $semainierDAO->fetchAll();
 
         $lundi = explode(',',$enfant->planning_id->lundi);
         $mardi = explode(',',$enfant->planning_id->mardi);
@@ -32,9 +37,14 @@ class PlanningController extends AbstractController {
 
 
     public function createPlanning ($enfant_id){
+
         $aidepeda = $this->isLogged();
+
         $enfantDAO = new EnfantDAO();
         $enfant = $enfantDAO->fetch($enfant_id, false);
+
+        $semainierDAO = new SemainierDAO();
+        $semainier = $semainierDAO->fetchAll();
 
         include ('../views/include/header.php');
         include('../views/include/nav.php');
@@ -71,13 +81,19 @@ class PlanningController extends AbstractController {
     public function edit($id)
     {
         $aidepeda = $this->isLogged();
+
         $enfantDAO = new EnfantDAO();
         $enfant = $enfantDAO->fetchWhereOne('planning_id', $id);
+
+        $semainierDAO = new SemainierDAO();
+        $semainier = $semainierDAO->fetchAll();
+
         $lundi = explode(',',$enfant->planning_id->lundi);
         $mardi = explode(',',$enfant->planning_id->mardi);
         $mercredi = explode(',',$enfant->planning_id->mercredi);
         $jeudi = explode(',',$enfant->planning_id->jeudi);
         $vendredi = explode(',',$enfant->planning_id->vendredi);
+
         include('../views/include/header.php');
         include('../views/include/nav.php');
         include('../views/planning/edit.php');
@@ -119,8 +135,8 @@ class PlanningController extends AbstractController {
 
 
     public function delete($id, $data) {
-        $aidepeda = $this->isLogged();
 
+        $aidepeda = $this->isLogged();
 
         $enfantDAO = new EnfantDAO();
         $enfant = $enfantDAO->fetchWhereOne('planning_id', $data['pk']);
@@ -129,6 +145,8 @@ class PlanningController extends AbstractController {
 
         $enfant = $enfantDAO->fetch($enfant->pk);
 
+        $semainierDAO = new SemainierDAO();
+        $semainier = $semainierDAO->fetchAll();
 
         include ('../views/include/header.php');
         include('../views/include/nav.php');

@@ -6,9 +6,21 @@ class AidePedaController extends AbstractController {
     }
 
     public function index (){
+
         $aidepeda = $this->isLogged();
+
         $semainierDAO = new SemainierDAO();
         $semainier = $semainierDAO->fetchAll();
+
+        $ecoleDAO = new EcoleDAO();
+        $ecole = $ecoleDAO->fetchAll();
+
+        $titulaireDAO = new TitulaireDAO();
+        $titulaire = $titulaireDAO->fetchAll();
+
+        $enfantDAO = new EnfantDAO();
+        $enfant = $enfantDAO->fetchAll();
+
         include('../views/include/header.php');
         include('../views/include/nav.php');
         include('../views/admin/dashboard.php');

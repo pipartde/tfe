@@ -7,9 +7,14 @@ class EcoleController extends AbstractController {
 
     // GET
     public function index (){
+
         $aidepeda = $this->isLogged();
 
+        $semainierDAO = new SemainierDAO();
+        $semainier = $semainierDAO->fetchAll();
+
         $ecoles = $this->dao->fetchAllSortedBy('nom');
+
         include ('../views/include/header.php');
         include('../views/include/nav.php');
         include ('../views/ecole/list.php');
@@ -18,6 +23,12 @@ class EcoleController extends AbstractController {
 
 
     public function create (){
+
+        $aidepeda = $this->isLogged();
+
+        $semainierDAO = new SemainierDAO();
+        $semainier = $semainierDAO->fetchAll();
+
         include ('../views/include/header.php');
         include('../views/include/nav.php');
         include ('../views/ecole/create.php');
@@ -40,6 +51,9 @@ class EcoleController extends AbstractController {
     public function edit($id)
     {
         $aidepeda = $this->isLogged();
+
+        $semainierDAO = new SemainierDAO();
+        $semainier = $semainierDAO->fetchAll();
 
         $ecole = $this->dao->fetch($id);
 
@@ -64,9 +78,16 @@ class EcoleController extends AbstractController {
 
 
     public function delete($id, $data) {
+
         $aidepeda = $this->isLogged();
+
         $this->dao->delete($data);
+
+        $semainierDAO = new SemainierDAO();
+        $semainier = $semainierDAO->fetchAll();
+
         $ecole = $this->dao->fetchAllSortedBy('nom');
+
         include ('../views/include/header.php');
         include('../views/include/nav.php');
         include ('../views/ecole/list.php');

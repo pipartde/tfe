@@ -11,13 +11,16 @@ class SemainierController extends AbstractController {
     }
 
     public function show ($id){
+
         $aidepeda = $this->isLogged();
+
         $aidepedaDAO = new AidePedaDAO();
         $aidepeda = $aidepedaDAO->fetchWhereOne('semainier_id',$id);
+
         $semainier = $this->dao->fetch($id);
+
         $enfantDAO = new EnfantDAO();
         $enfants = $enfantDAO->fetchAllSortedBy('pk');
-
 
         $lundi1 = explode(',',$semainier->lundi);
         $mardi1 = explode(',',$semainier->mardi);
@@ -70,8 +73,6 @@ class SemainierController extends AbstractController {
             }
         }
 
-        //echo "<pre>",var_dump($semainier->lundi),"<pre>";die;
-
         include ('../views/include/header.php');
         include('../views/include/nav.php');
         include ('../views/semainier/show.php');
@@ -84,6 +85,8 @@ class SemainierController extends AbstractController {
 
         $enfantDAO = new EnfantDAO();
         $enfants = $enfantDAO->fetchAllSortedBy('pk');
+
+        $semainier = $this->dao->fetchAll();
 
         $semainiertest =  ['L12','L34','L56','MA12','MA34','MA56','ME12','ME34','J12','J34','J56','V12', 'V34','V56'];
         $pkenfant = [];
@@ -303,6 +306,7 @@ class SemainierController extends AbstractController {
 
     public function store($id, $data)
     {
+        $aidepeda = $this->isLogged();
 
         $enfantDAO = new EnfantDAO();
         $enfants = $enfantDAO->fetchAllSortedBy('pk');
@@ -312,6 +316,7 @@ class SemainierController extends AbstractController {
 
         $semainierDAO = new SemainierDAO();
         $semainier = $semainierDAO->fetchAll();
+
         if($semainier[0]){
             $toDelete = ['pk'=> $semainier[0]->pk];
             $this->dao->delete($toDelete);
@@ -396,7 +401,8 @@ class SemainierController extends AbstractController {
 
                 }
             }
-        } else {
+        }
+        else {
             foreach ($data as $deuxheure) {
                 $nomEnfant = explode(" ",$deuxheure);
                 foreach ($enfants as $enfant){
@@ -485,13 +491,18 @@ class SemainierController extends AbstractController {
     public function edit($id)
     {
         $aidepeda = $this->isLogged();
+
         $enfantDAO = new EnfantDAO();
         $enfant = $enfantDAO->fetchWhereOne('planning_id', $id);
+
         $lundi = explode(',',$enfant->planning_id->lundi);
         $mardi = explode(',',$enfant->planning_id->mardi);
         $mercredi = explode(',',$enfant->planning_id->mercredi);
         $jeudi = explode(',',$enfant->planning_id->jeudi);
         $vendredi = explode(',',$enfant->planning_id->vendredi);
+
+        $semainier = $this->dao->fetchAll();
+
         include('../views/include/header.php');
         include('../views/include/nav.php');
         include('../views/planning/edit.php');
@@ -510,7 +521,6 @@ class SemainierController extends AbstractController {
 
         $planning = ['lundi' => $lundi, 'mardi' => $mardi, 'mercredi' => $mercredi, 'jeudi' => $jeudi, 'vendredi' => $vendredi];
 
-
         $is_stored_in_db = $this->dao->update($id, $planning);
         if ($is_stored_in_db) {
             $enfantDAO = new EnfantDAO();
@@ -523,8 +533,11 @@ class SemainierController extends AbstractController {
     }
 
     public function updateForFlag ($id){
+
         $aidepeda = $this->isLogged();
+
         $is_updated = $this->dao->updateForFlag($id);
+
         if($is_updated){
             return true;
         } else {
@@ -535,7 +548,6 @@ class SemainierController extends AbstractController {
 
     public function delete($id, $data) {
         $aidepeda = $this->isLogged();
-
 
         $aidepedaDAO = new AidePedaDAO();
         $aidepeda = $aidepedaDAO->fetchWhereOne('semainier_id', $data['pk']);

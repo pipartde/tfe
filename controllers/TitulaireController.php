@@ -13,6 +13,10 @@ class TitulaireController extends AbstractController {
         $ecoles = $ecoleDAO->fetchAllSortedBy('nom');
 
         $titulaires = $this->dao->fetchAllSortedBy('nom');
+
+        $semainierDAO = new SemainierDAO();
+        $semainier = $semainierDAO->fetchAll();
+
         include ('../views/include/header.php');
         include('../views/include/nav.php');
         include ('../views/titulaire/list.php');
@@ -24,6 +28,10 @@ class TitulaireController extends AbstractController {
 
         $ecoleDAO = new EcoleDAO();
         $ecoles = $ecoleDAO->fetchAllSortedBy('nom');
+
+        $semainierDAO = new SemainierDAO();
+        $semainier = $semainierDAO->fetchAll();
+
         include ('../views/include/header.php');
         include('../views/include/nav.php');
         include ('../views/titulaire/create.php');
@@ -47,6 +55,10 @@ class TitulaireController extends AbstractController {
         $aidepeda = $this->isLogged();
 
         $titulaire = $this->dao->fetch($id);
+
+        $semainierDAO = new SemainierDAO();
+        $semainier = $semainierDAO->fetchAll();
+
         $ecoleDAO = new EcoleDAO();
         $ecoles = $ecoleDAO->fetchAllSortedBy('nom');
 
@@ -71,10 +83,15 @@ class TitulaireController extends AbstractController {
 
     public function delete($id, $data) {
         $aidepeda = $this->isLogged();
+
         $this->dao->delete($data);
         $titulaires = $this->dao->fetchAllSortedBy('nom');
+
         $ecoleDAO = new EcoleDAO();
         $ecoles = $ecoleDAO->fetchAllSortedBy('nom');
+
+        $semainierDAO = new SemainierDAO();
+        $semainier = $semainierDAO->fetchAll();
 
         include ('../views/include/header.php');
         include('../views/include/nav.php');
