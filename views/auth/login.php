@@ -9,14 +9,16 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="/ressources/css/main.css" rel="stylesheet">
 </head>
 <body>
 <div class="text-center">
-    <!-- Button HTML (to Trigger Modal) -->
-    <a href="#myModal" class="trigger-btn" data-toggle="modal">Click to Open Login Modal</a>
+    <img src="/ressources/img/planning-logo.jpg" alt="logo de l'application" width="50%" height="20%">
+    <!-- Button HTML (to Trigger Modal) --><br>
+    <a href="#myModal" class="trigger-btn" data-toggle="modal">Cliquez ici pour vous connecter</a>
 </div>
 
 <!-- Modal HTML -->
@@ -34,20 +36,19 @@
                 <form action="/aidepeda/login" method="post">
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" required="required">
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Email"
+                               required="required">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+                        <input type="password" class="form-control" name="password" placeholder="Password"
+                               required="required">
                     </div>
                     <div class="form-group">
                         <input type="hidden" name="route" value="<?= $_SERVER['REQUEST_URI']; ?>">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Se connecter</button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <a href="#">Forgot Password?</a>
             </div>
         </div>
     </div>

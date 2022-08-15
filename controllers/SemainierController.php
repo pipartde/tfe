@@ -73,7 +73,9 @@ class SemainierController extends AbstractController {
         //echo "<pre>",var_dump($semainier->lundi),"<pre>";die;
 
         include ('../views/include/header.php');
+        include('../views/include/nav.php');
         include ('../views/semainier/show.php');
+        include('../views/include/footer.php');
     }
 
 
@@ -293,7 +295,9 @@ class SemainierController extends AbstractController {
         }
 
         include ('../views/include/header.php');
+        include('../views/include/nav.php');
         include ('../views/semainier/create.php');
+        include('../views/include/footer.php');
     }
 
 
@@ -489,8 +493,9 @@ class SemainierController extends AbstractController {
         $jeudi = explode(',',$enfant->planning_id->jeudi);
         $vendredi = explode(',',$enfant->planning_id->vendredi);
         include('../views/include/header.php');
+        include('../views/include/nav.php');
         include('../views/planning/edit.php');
-
+        include('../views/include/footer.php');
     }
 
     public function update ($id, $data)

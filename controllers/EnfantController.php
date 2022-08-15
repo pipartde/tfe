@@ -17,7 +17,9 @@ class EnfantController extends AbstractController {
 
         $enfants = $this->dao->fetchAllSortedBy('nom');
         include ('../views/include/header.php');
+        include('../views/include/nav.php');
         include ('../views/enfant/list.php');
+        include('../views/include/footer.php');
 
     }
 
@@ -33,7 +35,9 @@ class EnfantController extends AbstractController {
 
 
         include ('../views/include/header.php');
+        include('../views/include/nav.php');
         include ('../views/enfant/show.php');
+        include('../views/include/footer.php');
     }
 
 
@@ -46,7 +50,9 @@ class EnfantController extends AbstractController {
 
 
         include ('../views/include/header.php');
+        include('../views/include/nav.php');
         include ('../views/enfant/create.php');
+        include('../views/include/footer.php');
     }
 
 
@@ -58,7 +64,6 @@ class EnfantController extends AbstractController {
         if($is_stored_in_db){
             $this->index();
         }
-
 
     }
 
@@ -73,10 +78,10 @@ class EnfantController extends AbstractController {
         $titulaireDAO = new TitulaireDAO();
         $titulaires = $titulaireDAO->fetchAllSortedBy('nom');
 
-
-
         include('../views/include/header.php');
+        include('../views/include/nav.php');
         include('../views/enfant/edit.php');
+        include('../views/include/footer.php');
 
     }
 
@@ -104,7 +109,9 @@ class EnfantController extends AbstractController {
         $titulaires = $titulaireDAO->fetchAllSortedBy('nom');
 
         include ('../views/include/header.php');
+        include('../views/include/nav.php');
         include ('../views/enfant/list.php');
+        include('../views/include/footer.php');
 
     }
 }

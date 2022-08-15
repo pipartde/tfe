@@ -11,14 +11,17 @@ class EcoleController extends AbstractController {
 
         $ecoles = $this->dao->fetchAllSortedBy('nom');
         include ('../views/include/header.php');
+        include('../views/include/nav.php');
         include ('../views/ecole/list.php');
-
+        include('../views/include/footer.php');
     }
 
 
     public function create (){
         include ('../views/include/header.php');
+        include('../views/include/nav.php');
         include ('../views/ecole/create.php');
+        include('../views/include/footer.php');
     }
 
 
@@ -31,7 +34,6 @@ class EcoleController extends AbstractController {
             $this->index();
         }
 
-
     }
 
 
@@ -41,9 +43,10 @@ class EcoleController extends AbstractController {
 
         $ecole = $this->dao->fetch($id);
 
-
         include('../views/include/header.php');
+        include('../views/include/nav.php');
         include('../views/ecole/edit.php');
+        include('../views/include/footer.php');
 
     }
 
@@ -65,7 +68,9 @@ class EcoleController extends AbstractController {
         $this->dao->delete($data);
         $ecole = $this->dao->fetchAllSortedBy('nom');
         include ('../views/include/header.php');
+        include('../views/include/nav.php');
         include ('../views/ecole/list.php');
+        include('../views/include/footer.php');
 
     }
 }

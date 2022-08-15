@@ -8,12 +8,7 @@ class PlanningController extends AbstractController {
     // GET
     public function index (){
         var_dump("index...");
-        //
-        //$aidepeda = $this->isLogged();
-        //
-        //$planning = $this->dao->fetchAll();
-        //include ('../views/include/header.php');
-        //include ('../views/planning/list.php');
+
     }
 
     public function show ($id){
@@ -29,7 +24,9 @@ class PlanningController extends AbstractController {
 
 
         include ('../views/include/header.php');
+        include('../views/include/nav.php');
         include ('../views/planning/show.php');
+        include('../views/include/footer.php');
 
     }
 
@@ -40,7 +37,9 @@ class PlanningController extends AbstractController {
         $enfant = $enfantDAO->fetch($enfant_id, false);
 
         include ('../views/include/header.php');
+        include('../views/include/nav.php');
         include ('../views/planning/create.php');
+        include('../views/include/footer.php');
     }
 
 
@@ -80,8 +79,9 @@ class PlanningController extends AbstractController {
         $jeudi = explode(',',$enfant->planning_id->jeudi);
         $vendredi = explode(',',$enfant->planning_id->vendredi);
         include('../views/include/header.php');
+        include('../views/include/nav.php');
         include('../views/planning/edit.php');
-
+        include('../views/include/footer.php');
     }
 
     public function update ($id, $data)
@@ -131,7 +131,9 @@ class PlanningController extends AbstractController {
 
 
         include ('../views/include/header.php');
+        include('../views/include/nav.php');
         include ('../views/enfant/show.php');
+        include('../views/include/footer.php');
 
     }
 }

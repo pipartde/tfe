@@ -14,8 +14,9 @@ class TitulaireController extends AbstractController {
 
         $titulaires = $this->dao->fetchAllSortedBy('nom');
         include ('../views/include/header.php');
+        include('../views/include/nav.php');
         include ('../views/titulaire/list.php');
-
+        include('../views/include/footer.php');
     }
 
 
@@ -24,7 +25,9 @@ class TitulaireController extends AbstractController {
         $ecoleDAO = new EcoleDAO();
         $ecoles = $ecoleDAO->fetchAllSortedBy('nom');
         include ('../views/include/header.php');
+        include('../views/include/nav.php');
         include ('../views/titulaire/create.php');
+        include('../views/include/footer.php');
     }
 
 
@@ -36,8 +39,6 @@ class TitulaireController extends AbstractController {
         if($is_stored_in_db){
             $this->index();
         }
-
-
     }
 
 
@@ -50,8 +51,9 @@ class TitulaireController extends AbstractController {
         $ecoles = $ecoleDAO->fetchAllSortedBy('nom');
 
         include('../views/include/header.php');
+        include('../views/include/nav.php');
         include('../views/titulaire/edit.php');
-
+        include('../views/include/footer.php');
     }
 
     public function update ($id, $data)
@@ -75,7 +77,8 @@ class TitulaireController extends AbstractController {
         $ecoles = $ecoleDAO->fetchAllSortedBy('nom');
 
         include ('../views/include/header.php');
+        include('../views/include/nav.php');
         include ('../views/titulaire/list.php');
-
+        include('../views/include/footer.php');
     }
 }
