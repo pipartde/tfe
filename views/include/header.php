@@ -14,5 +14,5 @@
     <title>TFE - Gestionnaire de Planning - Pipart Denis</title>
 </head>
 <body>
-<div>
+<div class="bodyContainer">
 

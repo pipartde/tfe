@@ -3,7 +3,7 @@
 
 
 
-        <div class="title">Liste des enfants</div>
+        <div class="title h2">Liste des enfants</div>
         <?php if (empty($enfants)): ?>
             <p>Il n'y a rien à afficher.</p>
         <?php else: ?>
@@ -39,7 +39,5 @@
             </table>
 
         <?php endif; ?>
-        <p>
-            <a href="/">retour</a>
-        </p>
+
     </div>

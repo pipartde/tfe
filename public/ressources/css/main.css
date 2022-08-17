@@ -99,9 +99,42 @@ input {
 .containerParent{
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch ;
+}
+
+.containerInfo{
+    display: flex;
+    flex-direction: row;
     justify-content: space-evenly;
     align-items: stretch ;
 }
+
+.containerAction{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch ;
+    margin: 10px;
+}
+
+.containerMessage{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch ;
+    margin: 10px;
+}
+
 .child{
-    width: 17%;
+    width: 20%;
+    margin: 10px;
+}
+.childMessage{
+    width: 50%;
+    margin: 10px;
+}
+.childInfo{
+    width: 30%;
+    margin: 10px;
 }
