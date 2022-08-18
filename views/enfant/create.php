@@ -29,12 +29,8 @@
                     <?php endforeach; ?>
                 </select>
             </div>
-
             <input class="linkButton btn btn-warning m-1" type="submit" value="Ajouter cet enfant" name="addKid"
                    onclick="return confirm('Êtes vous sûr(e) ?')">
-
         </div>
     </form>
-
-
 </div>

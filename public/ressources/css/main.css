@@ -126,7 +126,7 @@ label {
 .containerForm{
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -86,7 +86,7 @@ class EcoleController extends AbstractController {
         $semainierDAO = new SemainierDAO();
         $semainier = $semainierDAO->fetchAll();
 
-        $ecole = $this->dao->fetchAllSortedBy('nom');
+        $ecoles = $this->dao->fetchAllSortedBy('nom');
 
         include ('../views/include/header.php');
         include('../views/include/nav.php');
