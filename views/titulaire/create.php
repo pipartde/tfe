@@ -1,25 +1,32 @@
 <div class="container">
 
-    <div class="title">Ajout d'un titulaire</div>
+    <div class="title h2 text-center">Ajout d'un titulaire</div>
 
     <form method="post" action="/titulaire/store" class="create-form-titulaire">
-        <label for="nom">Nom :</label>
-        <input type="text" name="nom" id="nom">
-        <label for="prenom">Prénom :</label>
-        <input type="text" name="prenom" id="prenom">
-        <label for="ecole">Ecole :</label>
-        <select name="ecole_id" id="ecole">
-            <?php foreach ($ecoles as $ecole) : ?>
-                    <option value="<?= $ecole->pk ?>"> <?php echo ($ecole->nom); ?> </option>
-                <?php endforeach; ?>
-        </select>
+        <div class="containerForm">
+            <div class="input-group m-1">
+                <span class="input-group-text" id="nom">Nom</span>
+                <input type="text" class="form-control" name="nom" aria-label="nom" aria-describedby="nom" id="nom">
+            </div>
+            <div class="input-group m-1">
+                <span class="input-group-text" id="prenom">Prénom</span>
+                <input type="text" class="form-control" name="prenom" aria-label="prenom" aria-describedby="prenom" id="prenom">
+            </div>
+            <div class="input-group m-1">
+                <label class="input-group-text" for="ecole">Ecole</label>
+                <select class="form-select" id="ecole" name="ecole_id">
+                    <?php foreach ($ecoles as $ecole) : ?>
+                        <option value="<?= $ecole->pk ?>"> <?php echo ($ecole->nom); ?> </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
 
 
-        <input class="linkButton" type="submit" value="ajouter" name="addtitulaire" onclick="return confirm('Êtes vous sûr(e) ?')">
+
+        <input class="linkButton btn btn-success m-1" type="submit" value="Enregistrer ce titulaire" name="addtitulaire" onclick="return confirm('Êtes vous sûr(e) ?')">
+        </div>
     </form>
 
-    <p>
-        <a href="/titulaire/index">annuler</a>
-    </p>
+
 
 </div>
