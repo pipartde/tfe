@@ -1,9 +1,7 @@
 
     <div class="container">
 
-
-
-        <div class="title h2">Liste des enfants</div>
+        <div class="title h2 text-center">Liste des enfants</div>
         <?php if (empty($enfants)): ?>
             <p>Il n'y a rien à afficher.</p>
         <?php else: ?>
@@ -31,7 +29,7 @@
                         <td>
                             <form method="post" action="/enfant/delete" class="delete-form-immeuble">
                                 <input type="hidden" name="pk" value="<?= htmlspecialchars($enfant->pk); ?>">
-                                <input class="linkButton" type="submit" value="Supprimer" name="deleteKid" onclick="return confirm('Êtes vous sûr(e) ?')">
+                                <input class="linkButton btn btn-danger" type="submit" value="Supprimer" name="deleteKid" onclick="return confirm('Êtes vous sûr(e) ?')">
                             </form>
                         </td>
                     </tr>

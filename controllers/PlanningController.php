@@ -126,7 +126,8 @@ class PlanningController extends AbstractController {
             }
             $enfantDAO = new EnfantDAO();
             $enfant = $enfantDAO->fetch($data["enfant_id"], false);
-            $this->show($enfant->pk);
+            $enfantController = new EnfantController();
+            $enfantController->show($enfant->pk);
         } else {
             echo "Erreur";
             return http_response_code(401);
