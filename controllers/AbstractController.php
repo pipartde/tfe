@@ -10,14 +10,14 @@ abstract class AbstractController {
         }
 
         $AidePedaDAO = new AidePedaDAO();
-        return $AidePedaDAO->fetchBySession($_COOKIE['session_token']);
+        $aidepeda = $AidePedaDAO->fetchBySession($_COOKIE['session_token']);
+        return $aidepeda;
     }
 
     public function isLogged() {
         $aidePeda = $this->getUser();
         if(!$aidePeda) {
             include('../views/auth/login.php');
-            //header("Location: ../planning.tfe/login");
             die;
         }
         return $aidePeda;

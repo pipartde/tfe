@@ -123,10 +123,10 @@ class AidePedaDAO extends AbstractDAO {
 
 
     }
-
+/*
     public function update ($id, $data){
 
-        if (empty($data['perNom'])) {
+        if (empty($data['nom'])) {
             return false;
         }
 
@@ -163,7 +163,7 @@ class AidePedaDAO extends AbstractDAO {
             }
         }
     }
-
+*/
 
     public function verify ($data) {
         if (empty($data['email']) || empty($data['password'])) {
@@ -208,6 +208,7 @@ class AidePedaDAO extends AbstractDAO {
 
         return $aidepeda;
     }
+
     public function setLastLog($aidepeda) {
         date_default_timezone_set('Europe/Brussels');
         $aidepeda->lastLog = date("Y-m-d H:i:s");
