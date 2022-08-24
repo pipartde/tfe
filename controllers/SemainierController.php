@@ -21,41 +21,63 @@ class SemainierController extends AbstractController {
 
         $enfantDAO = new EnfantDAO();
         $enfants = $enfantDAO->fetchAllSortedBy('pk');
-
+        $vide = new Enfant(0,'','Libre','','','');
         $lundi1 = explode(',',$semainier->lundi);
         $mardi1 = explode(',',$semainier->mardi);
         $mercredi1 = explode(',',$semainier->mercredi);
         $jeudi1 = explode(',',$semainier->jeudi);
         $vendredi1 = explode(',',$semainier->vendredi);
+
         $jour = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi'];
         $semaine = ['lundi' => [], 'mardi' => [], 'mercredi' => [], 'jeudi' => [], 'vendredi' => []];
         for ($i=0 ; $i<=4 ; $i++) {
             if ($i == 0) {
                 foreach ($lundi1 as $perlundi) {
+                    if($perlundi=="off"){
+                        array_push($semaine[$jour[$i]], $vide);
+                    }
                     foreach ($enfants as $enfant) {
                         if ($perlundi == $enfant->pk) {
                             array_push($semaine[$jour[$i]], $enfant);
                         }
                     }
+                    if(!$semaine[$jour[$i]]){
+                        array_push($semaine[$jour[$i]], $vide);
+                    }
                 }
             } elseif ($i === 1) {
                 foreach ($mardi1 as $permardi) {
+                    if($permardi=="off"){
+                        array_push($semaine[$jour[$i]], $vide);
+                    }
                     foreach ($enfants as $enfant) {
                         if ($permardi == $enfant->pk) {
                             array_push($semaine[$jour[$i]], $enfant);
                         }
                     }
+                    if(!$semaine[$jour[$i]]){
+                        array_push($semaine[$jour[$i]], $vide);
+                    }
                 }
             } elseif ($i == 2) {
                 foreach ($mercredi1 as $permer) {
+                    if($permer=="off"){
+                        array_push($semaine[$jour[$i]], $vide);
+                    }
                     foreach ($enfants as $enfant) {
                         if ($permer == $enfant->pk) {
                             array_push($semaine[$jour[$i]], $enfant);
                         }
                     }
+                    if(!$semaine[$jour[$i]]){
+                        array_push($semaine[$jour[$i]], $vide);
+                    }
                 }
             } elseif ($i == 3) {
                 foreach ($jeudi1 as $perjeudi) {
+                    if($perjeudi=="off"){
+                        array_push($semaine[$jour[$i]], $vide);
+                    }
                     foreach ($enfants as $enfant) {
                         if ($perjeudi == $enfant->pk) {
                             array_push($semaine[$jour[$i]], $enfant);
@@ -64,6 +86,9 @@ class SemainierController extends AbstractController {
                 }
             } elseif ($i == 4) {
                 foreach ($vendredi1 as $perven) {
+                    if($perven=="off"){
+                        array_push($semaine[$jour[$i]], $vide);
+                    }
                     foreach ($enfants as $enfant) {
                         if ($perven == $enfant->pk) {
                             array_push($semaine[$jour[$i]], $enfant);
@@ -73,6 +98,7 @@ class SemainierController extends AbstractController {
             }
         }
 
+        //echo "<pre>", var_dump($semaine), "<pre>" ;
         include ('../views/include/header.php');
         include('../views/include/nav.php');
         include ('../views/semainier/show.php');
@@ -114,11 +140,14 @@ class SemainierController extends AbstractController {
             }
         }
 
-        $result = combine($pkenfant,count($enfants));
+        $result = combine($pkenfant,count($enfants)); // reprend toutes les combinaisons d'enfants possibles (si 6 enfants => 6! => 6*5*4*3*2*1 = 720 possibilités
+
         $listingcombinaison = [];
         foreach ($result as $combinaison){
             array_push($listingcombinaison,str_split($combinaison));
         }
+
+        // reprend toutes les combinaisons dans un tableau avec chaque enfants repris via son pk
         $tablisting = [];
         $i = 0;
         foreach ($listingcombinaison as $combinaison){
@@ -134,6 +163,8 @@ class SemainierController extends AbstractController {
             }
             $i +=1;
         }
+
+        $vide = new Enfant(0,null,null,null,null,null);
         $listingSemainier = [];
         $k=0;
         foreach ($tablisting as $listing) {
@@ -146,7 +177,6 @@ class SemainierController extends AbstractController {
             for ($index = 0; $index <= 13; $index++) {
                 if ($index <= 2) {
                     foreach ($listing as $enfant) {
-                        //echo "<pre>", var_dump($enfant->prenom), "<pre>";
 
                         if (in_array($enfant->pk, $enfantRegistered) && !in_array($enfant->pk, $enfantCompteur)) {
                             $lundi = explode(',', $enfant->planning_id->lundi);
@@ -168,6 +198,9 @@ class SemainierController extends AbstractController {
                                 break;
                             }
                         }
+                    }
+                    if(!$semainier[$semainiertest[$index]]){
+                        array_push($semainier[$semainiertest[$index]], "libre");
                     }
                     $a += 2;
                     $b += 2;
@@ -198,6 +231,9 @@ class SemainierController extends AbstractController {
                             }
                         }
                     }
+                    if(!$semainier[$semainiertest[$index]]){
+                        array_push($semainier[$semainiertest[$index]], "libre");
+                    }
                     $a += 2;
                     $b += 2;
                 }
@@ -226,6 +262,9 @@ class SemainierController extends AbstractController {
                                 break;
                             }
                         }
+                    }
+                    if(!$semainier[$semainiertest[$index]]){
+                        array_push($semainier[$semainiertest[$index]], "libre");
                     }
                     $a += 2;
                     $b += 2;
@@ -256,6 +295,9 @@ class SemainierController extends AbstractController {
                             }
                         }
                     }
+                    if(!$semainier[$semainiertest[$index]]){
+                        array_push($semainier[$semainiertest[$index]], "libre");
+                    }
                     $a += 2;
                     $b += 2;
                 }
@@ -284,6 +326,9 @@ class SemainierController extends AbstractController {
                                 break;
                             }
                         }
+                    }
+                    if(!$semainier[$semainiertest[$index]]){
+                        array_push($semainier[$semainiertest[$index]],"libre");
                     }
                     $a += 2;
                     $b += 2;
@@ -317,7 +362,9 @@ class SemainierController extends AbstractController {
         $semainierDAO = new SemainierDAO();
         $semainier = $semainierDAO->fetchAll();
 
-        if($semainier[0]){
+        //echo "<pre>",var_dump($data),"<pre>";die;
+
+        if($semainier && $semainier[0]){
             $toDelete = ['pk'=> $semainier[0]->pk];
             $this->dao->delete($toDelete);
             foreach ($data as $deuxheure) {
@@ -355,36 +402,36 @@ class SemainierController extends AbstractController {
                             $result['vendredi'] .= ",".$enfant->pk;
                         }
                     }
-                    elseif ($nomEnfant[0] === ""){
+                    elseif ($nomEnfant[0] == "libre"){
                         if($i==0){
-                            $result['lundi'] .= " ";
+                            $result['lundi'] .= "off";
                         }
                         elseif ($i<=2){
-                            $result['lundi'] .= ", ";
+                            $result['lundi'] .= ",off";
                         }
                         elseif ($i==3){
-                            $result['mardi'] .= " ";
+                            $result['mardi'] .= "off";
                         }
                         elseif ($i<=5){
-                            $result['mardi'] .= ", ";
+                            $result['mardi'] .= ",off";
                         }
                         elseif ($i==6){
-                            $result['mercredi'] .= " ";
+                            $result['mercredi'] .= "off";
                         }
                         elseif ($i==7){
-                            $result['mercredi'] .= ", ";
+                            $result['mercredi'] .= ",off";
                         }
                         elseif ($i==8){
-                            $result['jeudi'] .= " ";
+                            $result['jeudi'] .= "off";
                         }
                         elseif ($i<=10){
-                            $result['jeudi'] .= ", ";
+                            $result['jeudi'] .= ",off";
                         }
                         elseif ($i==11){
-                            $result['vendredi'] .= " ";
+                            $result['vendredi'] .= "off";
                         }
                         else {
-                            $result['vendredi'] .= ", ";
+                            $result['vendredi'] .= ",off";
                         }
                         break;
                     }
@@ -438,36 +485,36 @@ class SemainierController extends AbstractController {
                             $result['vendredi'] .= ",".$enfant->pk;
                         }
                     }
-                    elseif ($nomEnfant[0] === ""){
+                    elseif ($nomEnfant[0] == "libre"){
                         if($i==0){
-                            $result['lundi'] .= " ";
+                            $result['lundi'] .= "off";
                         }
                         elseif ($i<=2){
-                            $result['lundi'] .= ", ";
+                            $result['lundi'] .= ",off";
                         }
                         elseif ($i==3){
-                            $result['mardi'] .= " ";
+                            $result['mardi'] .= "off";
                         }
                         elseif ($i<=5){
-                            $result['mardi'] .= ", ";
+                            $result['mardi'] .= ",off";
                         }
                         elseif ($i==6){
-                            $result['mercredi'] .= " ";
+                            $result['mercredi'] .= "off";
                         }
                         elseif ($i==7){
-                            $result['mercredi'] .= ", ";
+                            $result['mercredi'] .= ",off";
                         }
                         elseif ($i==8){
-                            $result['jeudi'] .= " ";
+                            $result['jeudi'] .= "off";
                         }
                         elseif ($i<=10){
-                            $result['jeudi'] .= ", ";
+                            $result['jeudi'] .= ",off";
                         }
                         elseif ($i==11){
-                            $result['vendredi'] .= " ";
+                            $result['vendredi'] .= "off";
                         }
                         else {
-                            $result['vendredi'] .= ", ";
+                            $result['vendredi'] .= ",off";
                         }
                         break;
                     }
@@ -550,7 +597,7 @@ class SemainierController extends AbstractController {
         $aidepeda = $this->isLogged();
 
         $aidepedaDAO = new AidePedaDAO();
-        $aidepeda = $aidepedaDAO->fetchWhereOne('semainier_id', $data['pk']);
+        //$aidepeda = $aidepedaDAO->fetchWhereOne('semainier_id', $data['pk']);
 
         $toDelete = ['pk'=> $id];
 

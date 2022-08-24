@@ -12,6 +12,7 @@ class AidePedaController extends AbstractController {
         $semainierDAO = new SemainierDAO();
         $semainier = $semainierDAO->fetchAll();
 
+
         $ecoleDAO = new EcoleDAO();
         $ecole = $ecoleDAO->fetchAll();
 

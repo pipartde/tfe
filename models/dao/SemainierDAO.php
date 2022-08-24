@@ -17,7 +17,7 @@ class SemainierDAO extends AbstractDAO {
             $result['mercredi'],
             $result['jeudi'],
             $result['vendredi'],
-            $result['planningUpdated']
+            $result['planningupdated']
         );
     }
 
@@ -29,7 +29,7 @@ class SemainierDAO extends AbstractDAO {
             $result['mercredi'],
             $result['jeudi'],
             $result['vendredi'],
-            $result['planningUpdated']
+            $result['planningupdated']
         );
     }
 
@@ -41,7 +41,7 @@ class SemainierDAO extends AbstractDAO {
             $result['mercredi'],
             $result['jeudi'],
             $result['vendredi'],
-            $result['planningUpdated']
+            $result['planningupdated']
         );
     }
 
@@ -54,7 +54,7 @@ class SemainierDAO extends AbstractDAO {
             $result['mercredi'],
             $result['jeudi'],
             $result['vendredi'],
-            $result['planningUpdated']
+            $result['planningupdated']
         );
     }
 

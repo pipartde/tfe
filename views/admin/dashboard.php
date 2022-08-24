@@ -41,11 +41,11 @@ $nbrTitulaire = count($titulaire);
     <div class="containerMessage">
         <div class="card text-center childMessage">
 
-            <div class="card-header <?php if ($semainier[0]->planningUpdated) : ?> bg-warning <?php endif; ?> ">
+            <div class="card-header <?php if ( $semainier && $semainier[0]->planningUpdated) : ?> bg-warning <?php endif; ?> ">
                 Messages
             </div>
             <div class="card-body">
-<?php if ($semainier[0]->planningUpdated) : ?>
+<?php if ($semainier && $semainier[0]->planningUpdated) : ?>
                 <h5 class="card-title">Semainier</h5>
                 <p class="card-text">
                     Attention, le planning d'un des enfants a été modifié depuis la génération du Semainier.<br>

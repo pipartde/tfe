@@ -11,7 +11,7 @@ abstract class AbstractDAO {
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    //chercher tous
+
     public function fetchAll () {
         try {
             $statement = $this->connection->prepare("SELECT * FROM {$this->table}");
@@ -66,7 +66,7 @@ abstract class AbstractDAO {
         }
     }
 
-    //chercher 1
+
     public function fetch ($id, $deep = true) {
         try {
             $statement = $this->connection->prepare("SELECT * FROM {$this->table} WHERE pk = ?");

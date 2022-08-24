@@ -7,18 +7,18 @@ class Semainier {
     private $mercredi;
     private $jeudi;
     private $vendredi;
-    private $planningUpdated;
+    private $planningupdated;
 
 
 
-    public function __construct ($pk, $lundi, $mardi, $mercredi, $jeudi, $vendredi, $planningUpdated) {
+    public function __construct ($pk, $lundi, $mardi, $mercredi, $jeudi, $vendredi, $planningupdated) {
         $this->pk = $pk;
         $this->lundi = $lundi;
         $this->mardi = $mardi;
         $this->mercredi = $mercredi;
         $this->jeudi = $jeudi;
         $this->vendredi = $vendredi;
-        $this->planningUpdated = $planningUpdated;
+        $this->planningupdated = $planningupdated;
     }
 
     public function __get ($prop) {
