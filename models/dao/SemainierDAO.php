@@ -71,7 +71,8 @@ class SemainierDAO extends AbstractDAO {
                 'mardi' => $data['mardi'],
                 'mercredi' => $data['mercredi'],
                 'jeudi' => $data['jeudi'],
-                'vendredi' => $data['vendredi']
+                'vendredi' => $data['vendredi'],
+                'planningupdated' => 0
             ]);
 
         if ($semainier) {
