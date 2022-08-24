@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Aug 15, 2022 at 08:39 AM
--- Server version: 5.7.26
--- PHP Version: 7.4.2
+-- Hôte : 127.0.0.1:3306
+-- Généré le : mer. 24 août 2022 à 13:37
+-- Version du serveur : 5.7.36
+-- Version de PHP : 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,17 +18,18 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `planningtfe`
+-- Base de données : `planningtfe`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aidepeda`
+-- Structure de la table `aidepeda`
 --
 
-CREATE TABLE `aidepeda` (
-  `pk` int(11) NOT NULL,
+DROP TABLE IF EXISTS `aidepeda`;
+CREATE TABLE IF NOT EXISTS `aidepeda` (
+  `pk` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(60) NOT NULL,
@@ -35,53 +37,62 @@ CREATE TABLE `aidepeda` (
   `prenom` varchar(50) NOT NULL,
   `session_token` varchar(255) DEFAULT NULL,
   `lastlog` varchar(255) DEFAULT NULL,
-  `semainier_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `semainier_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`pk`),
+  KEY `semainier_id` (`semainier_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `aidepeda`
+-- Déchargement des données de la table `aidepeda`
 --
 
 INSERT INTO `aidepeda` (`pk`, `username`, `email`, `password`, `nom`, `prenom`, `session_token`, `lastlog`, `semainier_id`) VALUES
-(1, 'testUSERNAME', 'test@test.test', '$2y$10$SNuKUct6l0sRcky87vFOdevwMqIV3.8Qly2w.KtbH/coOLEgiBU4W', 'Pipart', 'Denis', 'f3360e8e90680ccd.1660550917', '2022-08-15 10:08:37', 31);
+(1, 'testUSERNAME', 'test@test.test', '$2y$10$SNuKUct6l0sRcky87vFOdevwMqIV3.8Qly2w.KtbH/coOLEgiBU4W', 'Pipart', 'Denis', 'e4e18d3235757c74.1661342844', '2022-08-24 14:07:24', 77);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ecole`
+-- Structure de la table `ecole`
 --
 
-CREATE TABLE `ecole` (
-  `pk` int(11) NOT NULL,
+DROP TABLE IF EXISTS `ecole`;
+CREATE TABLE IF NOT EXISTS `ecole` (
+  `pk` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
-  `adresse` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `adresse` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`pk`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `ecole`
+-- Déchargement des données de la table `ecole`
 --
 
 INSERT INTO `ecole` (`pk`, `nom`, `adresse`) VALUES
-(2, 'L\'école du Bonheur', 'rue du bonheur 66, 1300 Wavre'),
+(2, 'L\'Ã©cole du Bonheur', 'rue du bonheur 66, 1300 Wavre'),
 (3, 'Institut Saint Jean Baptiste', 'Wavre');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `enfant`
+-- Structure de la table `enfant`
 --
 
-CREATE TABLE `enfant` (
-  `pk` int(11) NOT NULL,
+DROP TABLE IF EXISTS `enfant`;
+CREATE TABLE IF NOT EXISTS `enfant` (
+  `pk` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
   `ecole_id` int(11) NOT NULL,
   `titulaire_id` int(11) NOT NULL,
-  `planning_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `planning_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`pk`),
+  KEY `ecole_id` (`ecole_id`),
+  KEY `titulaire_id` (`titulaire_id`),
+  KEY `planning` (`planning_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `enfant`
+-- Déchargement des données de la table `enfant`
 --
 
 INSERT INTO `enfant` (`pk`, `nom`, `prenom`, `ecole_id`, `titulaire_id`, `planning_id`) VALUES
@@ -95,20 +106,22 @@ INSERT INTO `enfant` (`pk`, `nom`, `prenom`, `ecole_id`, `titulaire_id`, `planni
 -- --------------------------------------------------------
 
 --
--- Table structure for table `planning`
+-- Structure de la table `planning`
 --
 
-CREATE TABLE `planning` (
-  `pk` int(11) NOT NULL,
+DROP TABLE IF EXISTS `planning`;
+CREATE TABLE IF NOT EXISTS `planning` (
+  `pk` int(11) NOT NULL AUTO_INCREMENT,
   `lundi` varchar(255) NOT NULL,
   `mardi` varchar(255) NOT NULL,
   `mercredi` varchar(255) NOT NULL,
   `jeudi` varchar(255) NOT NULL,
-  `vendredi` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `vendredi` varchar(255) NOT NULL,
+  PRIMARY KEY (`pk`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `planning`
+-- Déchargement des données de la table `planning`
 --
 
 INSERT INTO `planning` (`pk`, `lundi`, `mardi`, `mercredi`, `jeudi`, `vendredi`) VALUES
@@ -122,41 +135,46 @@ INSERT INTO `planning` (`pk`, `lundi`, `mardi`, `mercredi`, `jeudi`, `vendredi`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `semainier`
+-- Structure de la table `semainier`
 --
 
-CREATE TABLE `semainier` (
-  `pk` int(11) NOT NULL,
+DROP TABLE IF EXISTS `semainier`;
+CREATE TABLE IF NOT EXISTS `semainier` (
+  `pk` int(11) NOT NULL AUTO_INCREMENT,
   `lundi` varchar(255) NOT NULL,
   `mardi` varchar(255) NOT NULL,
   `mercredi` varchar(255) NOT NULL,
   `jeudi` varchar(255) NOT NULL,
   `vendredi` varchar(255) NOT NULL,
-  `planningUpdated` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `planningupdated` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`pk`)
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `semainier`
+-- Déchargement des données de la table `semainier`
 --
 
-INSERT INTO `semainier` (`pk`, `lundi`, `mardi`, `mercredi`, `jeudi`, `vendredi`, `planningUpdated`) VALUES
-(31, '5,5,4', '4,8,7', '6,6', '8,7, ', ' ,9,9', 1);
+INSERT INTO `semainier` (`pk`, `lundi`, `mardi`, `mercredi`, `jeudi`, `vendredi`, `planningupdated`) VALUES
+(77, '5,5,4', '4,8,8', '6,6', '9,7,7', 'off,9,off', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `titulaire`
+-- Structure de la table `titulaire`
 --
 
-CREATE TABLE `titulaire` (
-  `pk` int(11) NOT NULL,
+DROP TABLE IF EXISTS `titulaire`;
+CREATE TABLE IF NOT EXISTS `titulaire` (
+  `pk` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) DEFAULT NULL,
-  `ecole_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `ecole_id` int(11) NOT NULL,
+  PRIMARY KEY (`pk`),
+  KEY `ecole` (`ecole_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `titulaire`
+-- Déchargement des données de la table `titulaire`
 --
 
 INSERT INTO `titulaire` (`pk`, `nom`, `prenom`, `ecole_id`) VALUES
@@ -164,102 +182,17 @@ INSERT INTO `titulaire` (`pk`, `nom`, `prenom`, `ecole_id`) VALUES
 (6, 'Raskin', 'Nicolas', 3);
 
 --
--- Indexes for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Indexes for table `aidepeda`
---
-ALTER TABLE `aidepeda`
-  ADD PRIMARY KEY (`pk`),
-  ADD KEY `semainier_id` (`semainier_id`);
-
---
--- Indexes for table `ecole`
---
-ALTER TABLE `ecole`
-  ADD PRIMARY KEY (`pk`);
-
---
--- Indexes for table `enfant`
---
-ALTER TABLE `enfant`
-  ADD PRIMARY KEY (`pk`),
-  ADD KEY `ecole_id` (`ecole_id`),
-  ADD KEY `titulaire_id` (`titulaire_id`),
-  ADD KEY `planning` (`planning_id`);
-
---
--- Indexes for table `planning`
---
-ALTER TABLE `planning`
-  ADD PRIMARY KEY (`pk`);
-
---
--- Indexes for table `semainier`
---
-ALTER TABLE `semainier`
-  ADD PRIMARY KEY (`pk`);
-
---
--- Indexes for table `titulaire`
---
-ALTER TABLE `titulaire`
-  ADD PRIMARY KEY (`pk`),
-  ADD KEY `ecole` (`ecole_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `aidepeda`
---
-ALTER TABLE `aidepeda`
-  MODIFY `pk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `ecole`
---
-ALTER TABLE `ecole`
-  MODIFY `pk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `enfant`
---
-ALTER TABLE `enfant`
-  MODIFY `pk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `planning`
---
-ALTER TABLE `planning`
-  MODIFY `pk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
-
---
--- AUTO_INCREMENT for table `semainier`
---
-ALTER TABLE `semainier`
-  MODIFY `pk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
--- AUTO_INCREMENT for table `titulaire`
---
-ALTER TABLE `titulaire`
-  MODIFY `pk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `aidepeda`
+-- Contraintes pour la table `aidepeda`
 --
 ALTER TABLE `aidepeda`
   ADD CONSTRAINT `aidepeda_ibfk_1` FOREIGN KEY (`semainier_id`) REFERENCES `semainier` (`pk`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Constraints for table `enfant`
+-- Contraintes pour la table `enfant`
 --
 ALTER TABLE `enfant`
   ADD CONSTRAINT `enfant_ibfk_1` FOREIGN KEY (`ecole_id`) REFERENCES `ecole` (`pk`),
@@ -267,10 +200,11 @@ ALTER TABLE `enfant`
   ADD CONSTRAINT `enfant_ibfk_3` FOREIGN KEY (`planning_id`) REFERENCES `planning` (`pk`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `titulaire`
+-- Contraintes pour la table `titulaire`
 --
 ALTER TABLE `titulaire`
   ADD CONSTRAINT `titulaire_ibfk_1` FOREIGN KEY (`ecole_id`) REFERENCES `ecole` (`pk`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
