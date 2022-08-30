@@ -164,7 +164,6 @@ class SemainierController extends AbstractController {
             $i +=1;
         }
 
-        $vide = new Enfant(0,null,null,null,null,null);
         $listingSemainier = [];
         $k=0;
         foreach ($tablisting as $listing) {
@@ -200,7 +199,7 @@ class SemainierController extends AbstractController {
                         }
                     }
                     if(!$semainier[$semainiertest[$index]]){
-                        array_push($semainier[$semainiertest[$index]], "libre");
+                        array_push($semainier[$semainiertest[$index]], "Libre");
                     }
                     $a += 2;
                     $b += 2;
@@ -232,7 +231,7 @@ class SemainierController extends AbstractController {
                         }
                     }
                     if(!$semainier[$semainiertest[$index]]){
-                        array_push($semainier[$semainiertest[$index]], "libre");
+                        array_push($semainier[$semainiertest[$index]], "Libre");
                     }
                     $a += 2;
                     $b += 2;
@@ -264,7 +263,7 @@ class SemainierController extends AbstractController {
                         }
                     }
                     if(!$semainier[$semainiertest[$index]]){
-                        array_push($semainier[$semainiertest[$index]], "libre");
+                        array_push($semainier[$semainiertest[$index]], "Libre");
                     }
                     $a += 2;
                     $b += 2;
@@ -296,7 +295,7 @@ class SemainierController extends AbstractController {
                         }
                     }
                     if(!$semainier[$semainiertest[$index]]){
-                        array_push($semainier[$semainiertest[$index]], "libre");
+                        array_push($semainier[$semainiertest[$index]], "Libre");
                     }
                     $a += 2;
                     $b += 2;
@@ -328,14 +327,14 @@ class SemainierController extends AbstractController {
                         }
                     }
                     if(!$semainier[$semainiertest[$index]]){
-                        array_push($semainier[$semainiertest[$index]],"libre");
+                        array_push($semainier[$semainiertest[$index]],"Libre");
                     }
                     $a += 2;
                     $b += 2;
                 }
             }
             if (!in_array($semainier,$listingSemainier)){
-                if(count($enfantCompteur)==6){
+                if(count($enfantCompteur)==count($enfants)){
                     $listingSemainier[$k]=$semainier;
                 }
             }
@@ -362,7 +361,6 @@ class SemainierController extends AbstractController {
         $semainierDAO = new SemainierDAO();
         $semainier = $semainierDAO->fetchAll();
 
-        //echo "<pre>",var_dump($data),"<pre>";die;
 
         if($semainier && $semainier[0]){
             $toDelete = ['pk'=> $semainier[0]->pk];
@@ -402,7 +400,7 @@ class SemainierController extends AbstractController {
                             $result['vendredi'] .= ",".$enfant->pk;
                         }
                     }
-                    elseif ($nomEnfant[0] == "libre"){
+                    elseif ($nomEnfant[0] == "Libre"){
                         if($i==0){
                             $result['lundi'] .= "off";
                         }
@@ -485,7 +483,7 @@ class SemainierController extends AbstractController {
                             $result['vendredi'] .= ",".$enfant->pk;
                         }
                     }
-                    elseif ($nomEnfant[0] == "libre"){
+                    elseif ($nomEnfant[0] == "Libre"){
                         if($i==0){
                             $result['lundi'] .= "off";
                         }

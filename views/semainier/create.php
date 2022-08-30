@@ -70,7 +70,7 @@ foreach ($listingSemainier as $semainier): ?>
             <div class="card-header">
                 Action :
             </div>
-            <div class="card-body">
+            <div class="card-body text-center">
                 <form method="post" action="/semainier/store">
                     <input type="hidden" name="L12" value="<?= $semainier['L12'][0] ?>">
                     <input type="hidden" name="L34" value="<?= $semainier['L34'][0] ?>">
@@ -86,7 +86,7 @@ foreach ($listingSemainier as $semainier): ?>
                     <input type="hidden" name="V12" value="<?= $semainier['V12'][0] ?>">
                     <input type="hidden" name="V34" value="<?= $semainier['V34'][0] ?>">
                     <input type="hidden" name="V56" value="<?= $semainier['V56'][0] ?>">
-                    <input type="submit" value="Choisir ce semainier" class="btn btn-outline-success"
+                    <input type="submit" value="Le choisir" class="btn btn-outline-success"
                            onclick="return confirm('Êtes vous sûr(e) ?  Au risque de supprimer l\'ancien semainier ? ')">
                 </form>
             </div>
