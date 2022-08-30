@@ -131,12 +131,7 @@
                     <div class="card-body flew-row">
                         <a class="btn btn-warning" href="/planning/edit/<?= $enfant->planning_id->pk ?>">Modifier le
                             planning</a><br>
-                        <form method="post" action="/planning/delete" class="delete-form-planning">
-                            <input class="linkButton btn btn-danger m-1" type="submit" value="Supprimer le planning"
-                                   name="deletePlanning"
-                                   onclick="return confirm('Êtes vous sûr(e) ?')">
-                            <input type="hidden" name="pk" value="<?= htmlspecialchars($enfant->planning_id->pk); ?>">
-                        </form>
+
                     </div>
                 </div>
             </div>
