@@ -105,7 +105,8 @@ class EnfantDAO extends AbstractDAO {
                 'nom' => $data['nom'],
                 'prenom' => $data['prenom'],
                 'ecole_id' => $data['ecole_id'],
-                'titulaire_id' => $data['titulaire_id']]);
+                'titulaire_id' => $data['titulaire_id'],
+                'planning_id' => null]);
 
 
         if ($enfant) {
